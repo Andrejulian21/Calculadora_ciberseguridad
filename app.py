@@ -140,7 +140,66 @@ with tabs[0]:
 # RESTO DE MÓDULOS (PLACEHOLDER)
 # =========================
 with tabs[1]:
-    st.info("Módulo en construcción...")
+    from clasica import *
+
+st.header("🔐 Criptografía Clásica")
+
+opcion = st.selectbox("Seleccione método", [
+    "2.1 Módulo 27",
+    "2.2 César",
+    "2.3 Vernam",
+    "2.4 ATBASH",
+    "2.5 Transposición",
+    "2.6 Afín",
+    "2.7 Sustitución"
+])
+
+texto = st.text_input("Texto")
+
+if opcion == "2.1 Módulo 27":
+    k = st.number_input("Desplazamiento", step=1)
+    if st.button("Cifrar"):
+        res, pasos = cifrado_mod27(texto, k)
+
+elif opcion == "2.2 César":
+    k = st.number_input("Desplazamiento", step=1)
+    if st.button("Cifrar"):
+        res, pasos = cifrado_cesar(texto, k)
+
+elif opcion == "2.3 Vernam":
+    clave = st.text_input("Clave")
+    if st.button("Cifrar"):
+        res, pasos = cifrado_vernam(texto, clave)
+
+elif opcion == "2.4 ATBASH":
+    if st.button("Cifrar"):
+        res, pasos = cifrado_atbash(texto)
+
+elif opcion == "2.5 Transposición":
+    col = st.number_input("Columnas", step=1)
+    if st.button("Cifrar"):
+        res, pasos, matriz = transposicion_columnar(texto, col)
+        st.write("Matriz:")
+        st.table(matriz)
+
+elif opcion == "2.6 Afín":
+    a = st.number_input("a", step=1)
+    b = st.number_input("b", step=1)
+    if st.button("Cifrar"):
+        res, pasos = cifrado_afin(texto, a, b)
+
+elif opcion == "2.7 Sustitución":
+    clave = st.text_input("Clave (26 letras)")
+    if st.button("Cifrar"):
+        res, pasos = sustitucion_simple(texto, clave)
+
+# Mostrar pasos
+if 'res' in locals():
+    st.subheader("🧮 Proceso")
+    for p in pasos:
+        st.write(p)
+
+    st.success(f"Resultado: {res}")
 
 with tabs[2]:
     st.info("Módulo en construcción...")
