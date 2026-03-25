@@ -54,34 +54,35 @@ def rsa(p, q, e, mensaje):
 
 def exponenciacion_rapida(base, exp, mod):
     pasos = []
-    pasos.append("🔐 Exponenciación Rápida")
-    pasos.append(f"Base: {base}, Exponente: {exp}, Módulo: {mod}\n")
+    
+    pasos.append("🔐 Exponenciación rápida (método binario)")
+    pasos.append(f"Calculamos {base}^{exp} (mod {mod})")
 
-    resultado = 1
-    base_mod = base % mod
-    exp_binario = bin(exp)[2:]
+    exp_bin = bin(exp)[2:]
+    pasos.append(f"Exponente en binario: {exp_bin}\n")
 
-    pasos.append(f"Exponente en binario: {exp_binario}")
+    resultado = base % mod
+    pasos.append(f"1. Bit inicial ({exp_bin[0]}): Resultado = {resultado}")
 
-    for i, bit in enumerate(reversed(exp_binario)):
-            pasos.append(f"---")
-            pasos.append(f"### 📍 Bit {i}: `{bit}`")
-            
-            if bit == '1':
-                anterior_res = resultado
-                resultado = (resultado * base_actual) % mod
-                pasos.append(f"✅ **Bit es 1:** Multiplicamos el resultado.")
-                pasos.append(f"  * ${anterior_res} \\cdot {base_actual} \\pmod{{{mod}}} = \\mathbf{{{resultado}}}$")
-            else:
-                pasos.append(f"⚪ **Bit es 0:** El resultado no cambia (${resultado}$).")
+    for i in range(1, len(exp_bin)):
+        bit = exp_bin[i]
 
-            # Siempre elevamos la base al cuadrado para la siguiente posición
-            anterior_base = base_actual
-            base_actual = (base_actual * base_actual) % mod
-            
-            # Solo mostramos el cuadrado si no es el último bit (opcional para limpieza)
-            if i < len(exp_binario) - 1:
-                pasos.append(f"🔄 **Preparar siguiente bit:** Elevamos base al cuadrado.")
-                pasos.append(f"  * ${anterior_base}^2 \\pmod{{{mod}}} = \\mathbf{{{base_actual}}}$")
+        pasos.append(f"\n{i+1}. Bit {bit}:")
+
+        # Cuadrado
+        cuadrado = (resultado * resultado) % mod
+        pasos.append(f"   Cuadrado: {resultado}² = {(resultado * resultado)} ≡ {cuadrado} (mod {mod})")
+
+        resultado = cuadrado
+
+        # Si el bit es 1 → multiplicar
+        if bit == '1':
+            mult = (resultado * base) % mod
+            pasos.append(f"   Multiplicar: {resultado} * {base} = {(resultado * base)} ≡ {mult} (mod {mod})")
+            resultado = mult
+
+        pasos.append(f"   Resultado = {resultado}")
+
+    pasos.append(f"\n✅ Resultado final: {base}^{exp} (mod {mod}) = {resultado}")
 
     return resultado, pasos
