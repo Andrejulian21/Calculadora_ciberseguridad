@@ -266,15 +266,6 @@ with tabs[2]:
             if p and q and e:
                 res, pasos = rsa(p, q, e, m)
                 
-                if res is not None:
-                    st.success(f"**Texto Cifrado (C):** {res}")
-                    with st.expander("Ver procedimiento matemático"):
-                        for p_text in pasos:
-                            st.markdown(p_text)
-                else:
-                    st.error(pasos[-1]) # Muestra el último error registrado
-            else:
-                st.warning("Asegúrate de llenar todos los campos.")
 
     # =========================
     # EXPONENCIACIÓN RÁPIDA
