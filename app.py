@@ -287,10 +287,77 @@ with tabs[2]:
         st.success(f"Resultado: {res}")
 
 with tabs[3]:
-    st.info("Módulo en construcción...")
+    from hashing import *
 
+    st.header("🔐 Algoritmos Hash")
+
+    opcion = st.selectbox("Seleccione", [
+        "4.1 MD5",
+        "4.2 SHA256",
+        "4.3 SHA512"
+    ])
+
+    texto = st.text_input("Texto")
+
+    if st.button("Calcular Hash"):
+        if opcion == "4.1 MD5":
+            res, pasos = hash_md5(texto)
+        elif opcion == "4.2 SHA256":
+            res, pasos = hash_sha256(texto)
+        elif opcion == "4.3 SHA512":
+            res, pasos = hash_sha512(texto)
+
+        for p in pasos:
+            st.write(p)
+
+        st.success(res)
 with tabs[4]:
-    st.info("Módulo en construcción...")
+    from codificacion import *
+
+    st.header("🔢 Codificación")
+
+    opcion = st.selectbox("Seleccione", [
+        "ASCII",
+        "Hexa",
+        "Binario",
+        "Base64"
+    ])
+
+    accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
+    texto = st.text_input("Entrada")
+
+    if st.button("Ejecutar"):
+        if opcion == "ASCII":
+            res, pasos = ascii_codificar(texto) if accion=="Codificar" else ascii_decodificar(texto)
+
+        elif opcion == "Hexa":
+            res, pasos = hexa_codificar(texto) if accion=="Codificar" else hexa_decodificar(texto)
+
+        elif opcion == "Binario":
+            res, pasos = binario_codificar(texto) if accion=="Codificar" else binario_decodificar(texto)
+
+        elif opcion == "Base64":
+            res, pasos = base64_codificar(texto) if accion=="Codificar" else base64_decodificar(texto)
+
+        for p in pasos:
+            st.write(p)
+
+        st.success(res)
 
 with tabs[5]:
-    st.info("Módulo en construcción...")
+    from salt import *
+
+    st.header("🧂 Protocolo SALT")
+
+    texto = st.text_input("Texto")
+    salt_val = st.text_input("Salt")
+
+    tipo = st.selectbox("Algoritmo", ["md5", "sha256", "sha512"])
+
+    if st.button("Generar Hash"):
+        res, pasos = hash_con_salt(texto, salt_val, tipo)
+
+        for p in pasos:
+            st.write(p)
+
+        st.success(res)
