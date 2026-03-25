@@ -64,12 +64,24 @@ def exponenciacion_rapida(base, exp, mod):
     pasos.append(f"Exponente en binario: {exp_binario}")
 
     for i, bit in enumerate(reversed(exp_binario)):
-        if bit == '1':
-            resultado = (resultado * base_mod) % mod
-            pasos.append(f"Bit {i} (1): {resultado} = ({resultado} * {base_mod}) mod {mod} = {resultado}")
-        else:
-            pasos.append(f"Bit {i} (0): {resultado} sin cambio = {resultado}")
-        base_mod = (base_mod * base_mod) % mod
-        pasos.append(f"Base al cuadrado mod {mod}: {base_mod} = ({base_mod}^2) mod {mod} = {base_mod}")
+            pasos.append(f"---")
+            pasos.append(f"### 📍 Bit {i}: `{bit}`")
+            
+            if bit == '1':
+                anterior_res = resultado
+                resultado = (resultado * base_actual) % mod
+                pasos.append(f"✅ **Bit es 1:** Multiplicamos el resultado.")
+                pasos.append(f"  * ${anterior_res} \\cdot {base_actual} \\pmod{{{mod}}} = \\mathbf{{{resultado}}}$")
+            else:
+                pasos.append(f"⚪ **Bit es 0:** El resultado no cambia (${resultado}$).")
+
+            # Siempre elevamos la base al cuadrado para la siguiente posición
+            anterior_base = base_actual
+            base_actual = (base_actual * base_actual) % mod
+            
+            # Solo mostramos el cuadrado si no es el último bit (opcional para limpieza)
+            if i < len(exp_binario) - 1:
+                pasos.append(f"🔄 **Preparar siguiente bit:** Elevamos base al cuadrado.")
+                pasos.append(f"  * ${anterior_base}^2 \\pmod{{{mod}}} = \\mathbf{{{base_actual}}}$")
 
     return resultado, pasos
