@@ -168,8 +168,16 @@ elif opcion == "2.2 César":
 
 elif opcion == "2.3 Vernam":
     clave = st.text_input("Clave")
-    if st.button("Cifrar"):
-        res, pasos = cifrado_vernam(texto, clave)
+    accion = st.selectbox("Acción", ["Cifrar", "Descifrar"])
+
+    if st.button("Ejecutar"):
+        res, pasos = vernam(texto, clave)
+
+        st.subheader("🧮 Proceso")
+        for p in pasos:
+            st.write(p)
+
+        st.success(f"Resultado: {res}")
 
 elif opcion == "2.4 ATBASH":
     if st.button("Cifrar"):
