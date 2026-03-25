@@ -24,16 +24,20 @@ def cifrado_cesar(texto, k):
     pasos = []
     resultado = ""
 
-    pasos.append("Cifrado César usa módulo 26")
+    abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
-    for letra in texto:
-        if letra.isalpha():
-            base = ord('A') if letra.isupper() else ord('a')
-            pos = ord(letra) - base
-            nueva_pos = (pos + k) % 26
-            nueva_letra = chr(base + nueva_pos)
+    pasos.append("Cifrado César con alfabeto español (27 letras incluyendo Ñ)")
+    pasos.append(f"Desplazamiento k = {k}")
 
-            pasos.append(f"{letra} ({pos}) → ({pos}+{k}) mod 26 = {nueva_pos} → {nueva_letra}")
+    for letra in texto.upper():
+        if letra in abecedario:
+            pos = abecedario.index(letra)
+            nueva_pos = (pos + k) % 27
+            nueva_letra = abecedario[nueva_pos]
+
+            pasos.append(
+                f"{letra} ({pos}) → ({pos} + {k}) mod 27 = {nueva_pos} → {nueva_letra}"
+            )
 
             resultado += nueva_letra
         else:
