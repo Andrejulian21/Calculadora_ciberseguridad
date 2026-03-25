@@ -160,10 +160,10 @@ def cifrado_afin(texto, a, b):
     for letra in texto.upper():
         if letra.isalpha():
             x = ord(letra) - ord('A')
-            nuevo = (a * x + b) % 26
+            nuevo = (a * x + b) % 27
             nueva_letra = chr(nuevo + ord('A'))
 
-            pasos.append(f"{letra} ({x}) → ({a}*{x}+{b}) mod 26 = {nuevo} → {nueva_letra}")
+            pasos.append(f"{letra} ({x}) → ({a}*{x}+{b}) mod 27 = {nuevo} → {nueva_letra}")
 
             resultado += nueva_letra
         else:
