@@ -243,7 +243,7 @@ with tabs[2]:
         a = st.number_input("Clave privada A", step=1)
         b = st.number_input("Clave privada B", step=1)
 
-        if st.button("Calcular2"):
+        if st.button("Calcular"):
             res, pasos = diffie_hellman(p, g, a, b)
 
     # =========================
