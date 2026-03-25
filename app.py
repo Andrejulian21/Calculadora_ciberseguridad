@@ -167,24 +167,34 @@ elif opcion == "2.2 César":
         res, pasos = cifrado_cesar(texto, k)
 
 elif opcion == "2.3 Vernam":
-    st.subheader("🔐 Cifrado Vernam (Módulo 27 con letras)")
+    st.subheader("🔐 Cifrado Vernam (Módulo 27)")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        texto_input = st.text_input("Mensaje claro")
+    with col2:
+        clave_input = st.text_input("Clave (Mismo tamaño)")
 
-    clave = st.text_input("Clave (letras)")
-
-    if st.button("Cifrar Vernam"):
-        if texto and clave:
-            res, pasos = cifrado_vernam(texto, clave)
-
-            st.subheader("🧮 Proceso paso a paso")
-            for p in pasos:
-                if "Posición" in p:
-                    st.markdown(f"### {p}")
-                else:
-                    st.write(p)
-
-            st.success(f"Resultado: {res}")
+    # Feedback en tiempo real sobre la longitud
+    if texto_input and clave_input:
+        if len(texto_input) != len(clave_input):
+            st.error(f"⚠️ Longitud incorrecta: Texto ({len(texto_input)}) vs Clave ({len(clave_input)})")
         else:
-            st.warning("Ingrese texto y clave")
+            st.success("✅ Longitudes coincidentes")
+
+    if st.button("Ejecutar Cifrado"):
+        if texto_input and clave_input:
+            res, pasos = cifrado_vernam(texto_input, clave_input)
+            
+            if res:
+                st.info(f"**Resultado Final:** {res}")
+                with st.expander("Ver proceso detallado"):
+                    for p in pasos:
+                        st.markdown(p)
+            else:
+                st.error(pasos[0]) # Muestra el error de validación
+        else:
+            st.warning("Por favor, completa ambos campos.")
 
 elif opcion == "2.4 ATBASH":
     if st.button("Cifrar"):

@@ -48,42 +48,40 @@ def cifrado_cesar(texto, k):
 def cifrado_vernam(texto, clave):
     pasos = []
     resultado = ""
-
+    # Definimos el abecedario español (27 letras)
     abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
-    pasos.append("🔐 Cifrado Vernam con letras (Módulo 27)")
-    pasos.append("Usamos: C = (Texto + Clave) mod 27\n")
+    texto = texto.upper().replace(" ", "") # Vernam suele ignorar espacios
+    clave = clave.upper().replace(" ", "")
 
-    texto = texto.upper()
-    clave = clave.upper()
+    if len(texto) != len(clave):
+        return None, ["❌ Error: En Vernam, la clave debe tener la misma longitud que el texto."]
 
-    for i in range(len(texto)):
-        t_char = texto[i]
-        k_char = clave[i % len(clave)]
+    pasos.append("🔐 **Cifrado Vernam (Módulo 27)**")
+    pasos.append("Fórmula: $C = (P + K) \pmod{27}$\n")
 
+    for i, (t_char, k_char) in enumerate(zip(texto, clave)):
         if t_char in abecedario and k_char in abecedario:
-            t = abecedario.index(t_char)
-            k = abecedario.index(k_char)
+            p_idx = abecedario.index(t_char)
+            k_idx = abecedario.index(k_char)
 
-            suma = t + k
-            mod = suma % 27
-            nueva_letra = abecedario[mod]
+            suma = p_idx + k_idx
+            res_mod = suma % 27
+            nueva_letra = abecedario[res_mod]
 
-            pasos.append(f"🔹 Posición {i+1}:")
-            pasos.append(f"{t_char} ({t}) + {k_char} ({k}) = {suma}")
-
+            pasos.append(f"### 🔹 Posición {i+1}: {t_char}")
+            pasos.append(f"**Cálculo:** {p_idx} (Letra) + {k_idx} (Clave) = {suma}")
+            
             if suma >= 27:
-                pasos.append(f"Aplicamos módulo 27: {suma} - 27 = {mod}")
+                pasos.append(f"**Módulo:** {suma} mod 27 = **{res_mod}**")
             else:
-                pasos.append(f"No supera 27 → {mod}")
-
-            pasos.append(f"→ {nueva_letra}\n")
-
+                pasos.append(f"**Resultado:** {res_mod} (No requiere módulo)")
+            
+            pasos.append(f"**Letra cifrada:** {nueva_letra} \n")
             resultado += nueva_letra
         else:
+            # Si hay caracteres especiales, los dejamos igual
             resultado += t_char
-
-    pasos.append(f"✅ Texto cifrado: {resultado}")
 
     return resultado, pasos
 
