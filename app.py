@@ -211,7 +211,7 @@ elif opcion == "2.6 Afín":
         res, pasos = cifrado_afin(texto, a, b)
 
 elif opcion == "2.7 Sustitución":
-    clave = st.text_input("Clave (26 letras)")
+    clave = st.text_input("Clave (27 letras)")
     if st.button("Cifrar"):
         res, pasos = sustitucion_simple(texto, clave)
 
