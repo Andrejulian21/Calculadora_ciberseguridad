@@ -15,28 +15,13 @@ def calcular_modulo(a, n):
 def inverso_aditivo(a, n):
     pasos = []
 
-    pasos.append("Usamos la definición de congruencia:")
-    pasos.append(f"a ≡ b (mod n) si tienen el mismo residuo o si (a - b) es múltiplo de n")
+    resultado = (n - a) % n
 
-    pasos.append("Buscamos el inverso aditivo x tal que:")
-    pasos.append(f"{a} + x ≡ 0 (mod {n})")
+    pasos.append(f"Calculamos el inverso aditivo de {a} mod {n}")
+    pasos.append(f"Inverso aditivo = (n - a) mod n")
+    pasos.append(f"Inverso aditivo = ({n} - {a}) mod {n} = {resultado}")
 
-    pasos.append("Despejamos x:")
-    pasos.append(f"x ≡ -{a} (mod {n})")
-
-    negativo = -a
-    pasos.append(f"x ≡ {negativo} (mod {n})")
-
-    inv = negativo % n
-
-    pasos.append("Convertimos a un valor positivo dentro del módulo:")
-    pasos.append(f"{negativo} mod {n} = {inv}")
-
-    pasos.append("Verificación:")
-    pasos.append(f"({a} + {inv}) mod {n} = {(a + inv) % n}")
-
-    return inv, pasos
-
+    return resultado, pasos
 def inverso_xor(a, b):
     pasos = []
 
