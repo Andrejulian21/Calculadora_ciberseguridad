@@ -162,7 +162,7 @@ if opcion == "2.1 Módulo 27":
         res, pasos = cifrado_mod27(texto, k)
 
 elif opcion == "2.2 César":
-    k = st.number_input("Desplazamiento", step=1)
+    k = st.number_input("Clave", step=1)
     if st.button("Cifrar"):
         res, pasos = cifrado_cesar(texto, k)
 

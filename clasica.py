@@ -20,6 +20,27 @@ def cifrado_mod27(texto, k):
 
     return resultado, pasos
 
+def cifrado_cesar(texto, k):
+    pasos = []
+    resultado = ""
+
+    pasos.append("Cifrado César usa módulo 26")
+
+    for letra in texto:
+        if letra.isalpha():
+            base = ord('A') if letra.isupper() else ord('a')
+            pos = ord(letra) - base
+            nueva_pos = (pos + k) % 26
+            nueva_letra = chr(base + nueva_pos)
+
+            pasos.append(f"{letra} ({pos}) → ({pos}+{k}) mod 26 = {nueva_pos} → {nueva_letra}")
+
+            resultado += nueva_letra
+        else:
+            resultado += letra
+
+    return resultado, pasos
+
 def cifrado_vernam(texto, clave):
     pasos = []
     resultado = ""
