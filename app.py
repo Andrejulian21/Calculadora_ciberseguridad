@@ -250,13 +250,31 @@ with tabs[2]:
     # RSA
     # =========================
     elif opcion == "3.2 RSA":
-        p = st.number_input("p", step=1)
-        q = st.number_input("q", step=1)
-        e = st.number_input("e", step=1)
-        m = st.number_input("Mensaje (número)", step=1)
+        st.subheader("🔑 Criptosistema RSA")
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            p = st.number_input("Número primo p", value=61, step=1)
+        with col2:
+            q = st.number_input("Número primo q", value=53, step=1)
+        with col3:
+            e = st.number_input("Exponente e", value=17, step=1)
+            
+        m = st.number_input("Mensaje a cifrar (Número M < n)", value=65, step=1)
 
-        if st.button("calcular"):
-            res, pasos = rsa(p, q, e, m)
+        if st.button("Calcular RSA"):
+            if p and q and e:
+                res, pasos = rsa(p, q, e, m)
+                
+                if res is not None:
+                    st.success(f"**Texto Cifrado (C):** {res}")
+                    with st.expander("Ver procedimiento matemático"):
+                        for p_text in pasos:
+                            st.markdown(p_text)
+                else:
+                    st.error(pasos[-1]) # Muestra el último error registrado
+            else:
+                st.warning("Asegúrate de llenar todos los campos.")
 
     # =========================
     # EXPONENCIACIÓN RÁPIDA

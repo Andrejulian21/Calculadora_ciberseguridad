@@ -28,29 +28,43 @@ import math
 
 def rsa(p, q, e, mensaje):
     pasos = []
+    pasos.append("### 🔐 Proceso RSA detallado")
 
-    pasos.append("🔐 RSA")
+    # Validaciones iniciales
+    if p <= 1 or q <= 1:
+        return None, ["❌ Error: 'p' y 'q' deben ser números mayores a 1."]
 
     n = p * q
     phi = (p - 1) * (q - 1)
 
-    pasos.append(f"n = p*q = {p}*{q} = {n}")
-    pasos.append(f"φ(n) = ({p}-1)*({q}-1) = {phi}")
+    pasos.append(f"1. **Calcular n:** $p \\cdot q = {p} \\cdot {q} = {n}$")
+    pasos.append(f"2. **Calcular $\\phi(n)$:** $({p}-1) \\cdot ({q}-1) = {phi}$")
 
+    # Validación de e
     if math.gcd(e, phi) != 1:
-        pasos.append("❌ e no es coprimo con φ(n)")
+        pasos.append(f"❌ **Error:** $e={e}$ no es coprimo con $\\phi(n)={phi}$ (MCD ≠ 1).")
         return None, pasos
 
-    # inverso de e
-    d = pow(e, -1, phi)
+    try:
+        # inverso de e (Llave privada d)
+        d = pow(e, -1, phi)
+        pasos.append(f"3. **Calcular llave privada (d):** El inverso de {e} mod {phi} es **{d}**")
+        
+        # Validación del mensaje
+        if mensaje >= n:
+            pasos.append(f"⚠️ **Nota:** El mensaje ({mensaje}) es mayor o igual a n ({n}). El descifrado podría fallar.")
 
-    pasos.append(f"d (inverso de e) = {d}")
+        # Cifrado
+        c = pow(mensaje, e, n)
+        pasos.append(f"4. **Cifrado:** $C = {mensaje}^{{{e}}} \\pmod{{{n}}} = \\mathbf{{{c}}}$")
+        
+        # Opcional: Mostrar cómo se descifraría
+        m_descifrado = pow(c, d, n)
+        pasos.append(f"5. **Prueba de descifrado:** $M = {c}^{{{d}}} \\pmod{{{n}}} = {m_descifrado}$")
 
-    # cifrado
-    c = pow(mensaje, e, n)
-    pasos.append(f"Cifrado: C = {mensaje}^{e} mod {n} = {c}")
-
-    return c, pasos
+        return c, pasos
+    except ValueError:
+        return None, ["❌ Error matemático: No se pudo calcular el inverso modular."]
 
 def exponenciacion_rapida(base, exponente, mod):
     pasos = []
