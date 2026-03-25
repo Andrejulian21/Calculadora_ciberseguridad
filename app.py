@@ -169,11 +169,10 @@ elif opcion == "2.2 César":
 elif opcion == "2.3 Vernam":
     st.subheader("🔐 Cifrado Vernam (Módulo 27)")
     
-    col1, col2 = st.columns(2)
-    with col1:
-        texto_input = st.text_input("Mensaje claro")
-    with col2:
-        clave_input = st.text_input("Clave (Mismo tamaño)")
+
+    texto_input = st.text_input("Mensaje claro")
+
+    clave_input = st.text_input("Clave (Mismo tamaño)")
 
     # Feedback en tiempo real sobre la longitud
     if texto_input and clave_input:
