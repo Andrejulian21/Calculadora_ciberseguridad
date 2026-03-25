@@ -167,17 +167,24 @@ elif opcion == "2.2 César":
         res, pasos = cifrado_cesar(texto, k)
 
 elif opcion == "2.3 Vernam":
-    clave = st.text_input("Clave")
-    accion = st.selectbox("Acción", ["Cifrar", "Descifrar"])
+    st.subheader("🔐 Cifrado Vernam (Módulo 27 con letras)")
 
-    if st.button("Ejecutar"):
-        res, pasos = vernam(texto, clave)
+    clave = st.text_input("Clave (letras)")
 
-        st.subheader("🧮 Proceso")
-        for p in pasos:
-            st.write(p)
+    if st.button("Cifrar Vernam"):
+        if texto and clave:
+            res, pasos = cifrado_vernam(texto, clave)
 
-        st.success(f"Resultado: {res}")
+            st.subheader("🧮 Proceso paso a paso")
+            for p in pasos:
+                if "Posición" in p:
+                    st.markdown(f"### {p}")
+                else:
+                    st.write(p)
+
+            st.success(f"Resultado: {res}")
+        else:
+            st.warning("Ingrese texto y clave")
 
 elif opcion == "2.4 ATBASH":
     if st.button("Cifrar"):

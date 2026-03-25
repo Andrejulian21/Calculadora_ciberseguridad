@@ -45,64 +45,45 @@ def cifrado_cesar(texto, k):
 
     return resultado, pasos
 
-def vernam(texto, clave):
+def cifrado_vernam(texto, clave):
     pasos = []
     resultado = ""
 
-    pasos.append("🔐 Cifrado Vernam (XOR)")
-    pasos.append("Propiedad: Texto ⊕ Clave = Cifrado")
-    pasos.append("Y: Cifrado ⊕ Clave = Texto original\n")
+    abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
-    pasos.append("Paso 1: Convertimos a ASCII y binario")
+    pasos.append("🔐 Cifrado Vernam con letras (Módulo 27)")
+    pasos.append("Usamos: C = (Texto + Clave) mod 27\n")
+
+    texto = texto.upper()
+    clave = clave.upper()
 
     for i in range(len(texto)):
         t_char = texto[i]
         k_char = clave[i % len(clave)]
 
-        t = ord(t_char)
-        k = ord(k_char)
+        if t_char in abecedario and k_char in abecedario:
+            t = abecedario.index(t_char)
+            k = abecedario.index(k_char)
 
-        bin_t = bin(t)[2:].zfill(8)
-        bin_k = bin(k)[2:].zfill(8)
+            suma = t + k
+            mod = suma % 27
+            nueva_letra = abecedario[mod]
 
-        xor_bin = ""
-        detalle_bits = []
+            pasos.append(f"🔹 Posición {i+1}:")
+            pasos.append(f"{t_char} ({t}) + {k_char} ({k}) = {suma}")
 
-        # XOR bit a bit
-        for j in range(8):
-            bit_t = int(bin_t[j])
-            bit_k = int(bin_k[j])
-            xor_bit = bit_t ^ bit_k
+            if suma >= 27:
+                pasos.append(f"Aplicamos módulo 27: {suma} - 27 = {mod}")
+            else:
+                pasos.append(f"No supera 27 → {mod}")
 
-            xor_bin += str(xor_bit)
-            detalle_bits.append(f"{bit_t} ⊕ {bit_k} = {xor_bit}")
+            pasos.append(f"→ {nueva_letra}\n")
 
-        xor_decimal = int(xor_bin, 2)
-        xor_char = chr(xor_decimal)
+            resultado += nueva_letra
+        else:
+            resultado += t_char
 
-        pasos.append(f"\n🔹 Posición {i+1}:")
-        pasos.append(f"Texto: '{t_char}' → ASCII {t} → Binario {bin_t}")
-        pasos.append(f"Clave: '{k_char}' → ASCII {k} → Binario {bin_k}")
-
-        pasos.append("Operación XOR bit a bit:")
-        for d in detalle_bits:
-            pasos.append(d)
-
-        pasos.append("Resultado binario:")
-        pasos.append(f"{bin_t}")
-        pasos.append(f"{bin_k}")
-        pasos.append(f"{xor_bin}")
-
-        pasos.append(f"Resultado decimal: {xor_decimal}")
-        pasos.append(f"Carácter resultante: '{xor_char}'")
-
-        resultado += xor_char
-
-    pasos.append("\n✅ Resultado final:")
-    pasos.append(resultado)
-
-    pasos.append("\n💡 Para descifrar:")
-    pasos.append("Aplica la misma operación usando el texto cifrado y la misma clave")
+    pasos.append(f"✅ Texto cifrado: {resultado}")
 
     return resultado, pasos
 
