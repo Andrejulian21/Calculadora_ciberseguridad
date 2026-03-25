@@ -26,13 +26,54 @@ def inverso_aditivo(a, n):
 def inverso_xor(a, b):
     pasos = []
 
-    resultado = a ^ b
+    pasos.append("Paso 1: Convertimos los números a binario")
 
-    pasos.append(f"Aplicamos XOR: {a} ^ {b}")
-    pasos.append(f"Resultado: {resultado}")
-    pasos.append("Propiedad: a ^ b ^ b = a (XOR es su propio inverso)")
+    bin_a = bin(a)[2:]
+    bin_b = bin(b)[2:]
 
-    return resultado, pasos
+    pasos.append(f"{a} en binario = {bin_a}")
+    pasos.append(f"{b} en binario = {bin_b}")
+
+    # Igualar longitud (rellenar con ceros a la izquierda)
+    max_len = max(len(bin_a), len(bin_b))
+    bin_a = bin_a.zfill(max_len)
+    bin_b = bin_b.zfill(max_len)
+
+    pasos.append("Paso 2: Igualamos la longitud de los binarios")
+    pasos.append(f"{bin_a}")
+    pasos.append(f"{bin_b}")
+
+    pasos.append("Paso 3: Aplicamos XOR bit a bit (0⊕0=0, 1⊕1=0, 1⊕0=1)")
+
+    resultado_bin = ""
+    detalle_bits = []
+
+    for i in range(max_len):
+        bit_a = int(bin_a[i])
+        bit_b = int(bin_b[i])
+        xor_bit = bit_a ^ bit_b
+
+        resultado_bin += str(xor_bit)
+        detalle_bits.append(f"{bit_a} ⊕ {bit_b} = {xor_bit}")
+
+    pasos.append("Operación bit a bit:")
+    for d in detalle_bits:
+        pasos.append(d)
+
+    pasos.append("Resultado en binario:")
+    pasos.append(f"{bin_a}")
+    pasos.append(f"{bin_b}")
+    pasos.append(f"{resultado_bin}")
+
+    resultado_decimal = int(resultado_bin, 2)
+
+    pasos.append("Paso 4: Convertimos el resultado a decimal")
+    pasos.append(f"{resultado_bin} (binario) = {resultado_decimal} (decimal)")
+
+    pasos.append("Propiedad importante:")
+    pasos.append("a ⊕ b ⊕ b = a (XOR es su propio inverso)")
+
+    return resultado_decimal, pasos
 
 def calcular_mcd(a, b):
     pasos = []
