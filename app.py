@@ -157,7 +157,7 @@ opcion = st.selectbox("Seleccione método", [
 texto = st.text_input("Texto")
 
 if opcion == "2.1 Módulo 27":
-    k = st.number_input("Desplazamiento", step=1)
+    k = st.number_input("clave", step=1)
     if st.button("Cifrar"):
         res, pasos = cifrado_mod27(texto, k)
 
