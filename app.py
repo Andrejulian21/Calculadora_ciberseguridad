@@ -255,7 +255,7 @@ with tabs[2]:
         e = st.number_input("e", step=1)
         m = st.number_input("Mensaje (número)", step=1)
 
-        if st.button("Calcular"):
+        if st.button("calcular"):
             res, pasos = rsa(p, q, e, m)
 
     # =========================
@@ -266,7 +266,7 @@ with tabs[2]:
         exp = st.number_input("Exponente", step=1)
         mod = st.number_input("Módulo", step=1)
 
-        if st.button("Calcular"):
+        if st.button("calcular"):
             res, pasos = exponenciacion_rapida(base, exp, mod)
 
     # Mostrar resultados
