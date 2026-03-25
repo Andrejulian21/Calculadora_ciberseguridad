@@ -170,20 +170,18 @@ elif opcion == "2.3 Vernam":
     st.subheader("🔐 Cifrado Vernam (Módulo 27)")
     
 
-    texto_input = st.text_input("Mensaje claro")
-
     clave_input = st.text_input("Clave (Mismo tamaño)")
 
     # Feedback en tiempo real sobre la longitud
-    if texto_input and clave_input:
-        if len(texto_input) != len(clave_input):
-            st.error(f"⚠️ Longitud incorrecta: Texto ({len(texto_input)}) vs Clave ({len(clave_input)})")
+    if texto and clave_input:
+        if len(texto) != len(clave_input):
+            st.error(f"⚠️ Longitud incorrecta: Texto ({len(texto)}) vs Clave ({len(clave_input)})")
         else:
             st.success("✅ Longitudes coincidentes")
 
     if st.button("Ejecutar Cifrado"):
-        if texto_input and clave_input:
-            res, pasos = cifrado_vernam(texto_input, clave_input)
+        if texto and clave_input:
+            res, pasos = cifrado_vernam(texto, clave_input)
             
             if res:
                 st.info(f"**Resultado Final:** {res}")
