@@ -155,19 +155,34 @@ def cifrado_afin(texto, a, b):
     pasos = []
     resultado = ""
 
-    pasos.append("Fórmula: E(x) = (a*x + b) mod 26")
+    abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
-    for letra in texto.upper():
-        if letra.isalpha():
-            x = ord(letra) - ord('A')
-            nuevo = (a * x + b) % 27
-            nueva_letra = chr(nuevo + ord('A'))
+    pasos.append("🔐 Cifrado Afín con alfabeto español (27 letras)")
+    pasos.append("Fórmula: E(x) = (a*x + b) mod 27\n")
 
-            pasos.append(f"{letra} ({x}) → ({a}*{x}+{b}) mod 27 = {nuevo} → {nueva_letra}")
+    texto = texto.upper()
+
+    for letra in texto:
+        if letra in abecedario:
+            x = abecedario.index(letra)
+            calculo = a * x + b
+            nuevo = calculo % 27
+            nueva_letra = abecedario[nuevo]
+
+            pasos.append(f"{letra} ({x}) → ({a}*{x} + {b}) = {calculo}")
+            
+            if calculo >= 27:
+                pasos.append(f"{calculo} mod 27 = {nuevo}")
+            else:
+                pasos.append(f"No supera 27 → {nuevo}")
+
+            pasos.append(f"→ {nueva_letra}\n")
 
             resultado += nueva_letra
         else:
             resultado += letra
+
+    pasos.append(f"✅ Resultado: {resultado}")
 
     return resultado, pasos
 
