@@ -78,19 +78,41 @@ def inverso_xor(a, b):
 def calcular_mcd(a, b):
     pasos = []
 
-    pasos.append(f"Aplicamos algoritmo de Euclides:")
+    pasos.append("📘 Definición:")
+    pasos.append("El MCD (Máximo Común Divisor) es el mayor número que divide a ambos sin dejar residuo.")
+
+    pasos.append("\n📌 Usamos el Algoritmo de Euclides:")
+    pasos.append("Se basa en la propiedad:")
+    pasos.append("MCD(a, b) = MCD(b, a mod b)")
+
+    pasos.append(f"\nIniciamos con: a = {a}, b = {b}")
+
+    i = 1
 
     while b != 0:
-        pasos.append(f"{a} = {b} * ({a // b}) + {a % b}")
-        a, b = b, a % b
+        q = a // b
+        r = a % b
 
+        pasos.append(f"\n🔹 Iteración {i}:")
+        pasos.append(f"Dividimos {a} entre {b}")
+        pasos.append(f"{a} = {b} * {q} + {r}")
+        pasos.append(f"Residuo = {r}")
+
+        a, b = b, r
+        i += 1
+
+    pasos.append("\n📌 Cuando el residuo es 0, el último valor de a es el MCD")
     pasos.append(f"MCD = {a}")
 
     if a == 1:
-        pasos.append("Son coprimos → Sí existe inverso multiplicativo")
+        pasos.append("\n✅ Conclusión:")
+        pasos.append("Los números son coprimos (MCD = 1)")
+        pasos.append("✔ Sí existe inverso multiplicativo")
         existe = True
     else:
-        pasos.append("No son coprimos → No existe inverso multiplicativo")
+        pasos.append("\n❌ Conclusión:")
+        pasos.append(f"El MCD es {a}, no es 1")
+        pasos.append("✖ No existe inverso multiplicativo")
         existe = False
 
     return a, existe, pasos
