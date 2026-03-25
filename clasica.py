@@ -188,20 +188,30 @@ def cifrado_afin(texto, a, b):
 
 def sustitucion_simple(texto, clave):
     pasos = []
-    abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
     resultado = ""
+    
+    # Limpiamos y preparamos la clave
+    clave = clave.upper().replace(" ", "")
+    
+    # Validación crucial para evitar que el programa se cierre
+    if len(clave) != 27:
+        return None, [f"❌ Error: La clave debe tener 27 letras (tienes {len(clave)})."]
 
-    pasos.append("Usamos sustitución según clave dada")
+    pasos.append("🔐 **Sustitución Monoalfabética (Módulo 27)**")
+    pasos.append(f"Abecedario: `{abecedario}`")
+    pasos.append(f"Clave:      `{clave}`\n")
 
     for letra in texto.upper():
         if letra in abecedario:
             pos = abecedario.index(letra)
             nueva = clave[pos]
-
-            pasos.append(f"{letra} → {nueva}")
-
+            
+            # Solo guardamos pasos de letras para no saturar la pantalla
+            pasos.append(f"🔹 {letra} (pos {pos}) $\\rightarrow$ **{nueva}**")
             resultado += nueva
         else:
+            # Mantenemos espacios, números o puntos
             resultado += letra
 
     return resultado, pasos
