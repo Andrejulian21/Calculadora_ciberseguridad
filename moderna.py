@@ -28,66 +28,48 @@ import math
 
 def rsa(p, q, e, mensaje):
     pasos = []
-    pasos.append("### 🔐 Proceso RSA detallado")
 
-    # Validaciones iniciales
-    if p <= 1 or q <= 1:
-        return None, ["❌ Error: 'p' y 'q' deben ser números mayores a 1."]
+    pasos.append("🔐 RSA")
 
     n = p * q
     phi = (p - 1) * (q - 1)
 
-    pasos.append(f"1. **Calcular n:** $p \\cdot q = {p} \\cdot {q} = {n}$")
-    pasos.append(f"2. **Calcular $\\phi(n)$:** $({p}-1) \\cdot ({q}-1) = {phi}$")
+    pasos.append(f"n = p*q = {p}*{q} = {n}")
+    pasos.append(f"φ(n) = ({p}-1)*({q}-1) = {phi}")
 
-    # Validación de e
     if math.gcd(e, phi) != 1:
-        pasos.append(f"❌ **Error:** $e={e}$ no es coprimo con $\\phi(n)={phi}$ (MCD ≠ 1).")
+        pasos.append("❌ e no es coprimo con φ(n)")
         return None, pasos
 
-    try:
-        # inverso de e (Llave privada d)
-        d = pow(e, -1, phi)
-        pasos.append(f"3. **Calcular llave privada (d):** El inverso de {e} mod {phi} es **{d}**")
-        
-        # Validación del mensaje
-        if mensaje >= n:
-            pasos.append(f"⚠️ **Nota:** El mensaje ({mensaje}) es mayor o igual a n ({n}). El descifrado podría fallar.")
+    # inverso de e
+    d = pow(e, -1, phi)
 
-        # Cifrado
-        c = pow(mensaje, e, n)
-        pasos.append(f"4. **Cifrado:** $C = {mensaje}^{{{e}}} \\pmod{{{n}}} = \\mathbf{{{c}}}$")
-        
-        # Opcional: Mostrar cómo se descifraría
-        m_descifrado = pow(c, d, n)
-        pasos.append(f"5. **Prueba de descifrado:** $M = {c}^{{{d}}} \\pmod{{{n}}} = {m_descifrado}$")
+    pasos.append(f"d (inverso de e) = {d}")
 
-        return c, pasos
-    except ValueError:
-        return None, ["❌ Error matemático: No se pudo calcular el inverso modular."]
+    # cifrado
+    c = pow(mensaje, e, n)
+    pasos.append(f"Cifrado: C = {mensaje}^{e} mod {n} = {c}")
 
-def exponenciacion_rapida(base, exponente, mod):
+    return c, pasos
+
+def exponenciacion_rapida(base, exp, mod):
     pasos = []
-
-    pasos.append("⚡ Exponenciación rápida")
+    pasos.append("🔐 Exponenciación Rápida")
+    pasos.append(f"Base: {base}, Exponente: {exp}, Módulo: {mod}\n")
 
     resultado = 1
-    base = base % mod
+    base_mod = base % mod
+    exp_binario = bin(exp)[2:]
 
-    pasos.append(f"Inicial: resultado = 1, base = {base}")
+    pasos.append(f"Exponente en binario: {exp_binario}")
 
-    while exponente > 0:
-        pasos.append(f"\nExponente = {exponente}")
-
-        if exponente % 2 == 1:
-            resultado = (resultado * base) % mod
-            pasos.append(f"resultado = resultado * base mod {mod} = {resultado}")
-
-        base = (base * base) % mod
-        pasos.append(f"base = base^2 mod {mod} = {base}")
-
-        exponente //= 2
-
-    pasos.append(f"\nResultado final = {resultado}")
+    for i, bit in enumerate(reversed(exp_binario)):
+        if bit == '1':
+            resultado = (resultado * base_mod) % mod
+            pasos.append(f"Bit {i} (1): resultado = (resultado * base_mod) mod {mod} = {resultado}")
+        else:
+            pasos.append(f"Bit {i} (0): resultado sin cambio = {resultado}")
+        base_mod = (base_mod * base_mod) % mod
+        pasos.append(f"Base al cuadrado mod {mod}: base_mod = (base_mod^2) mod {mod} = {base_mod}")
 
     return resultado, pasos
