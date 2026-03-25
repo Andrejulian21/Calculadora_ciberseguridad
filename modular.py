@@ -34,9 +34,6 @@ def inverso_aditivo_modular(a, n):
     
     return resultado, pasos
 
-# Ejemplo de uso:
-res, proceso = inverso_aditivo_modular(9, 12)
-print("\n".join(proceso))
 
 def inverso_xor(a, b):
     pasos = []
