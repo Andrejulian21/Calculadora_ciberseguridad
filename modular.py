@@ -137,44 +137,79 @@ def algoritmo_extendido_euclides(a, n):
     pasos = []
     tabla = []
 
-    r0, r1 = n, a
-    s0, s1 = 1, 0
-    t0, t1 = 0, 1
+    pasos.append("📘 Algoritmo Extendido de Euclides (AEE)")
+    pasos.append(f"Buscamos el inverso de {a} mod {n}")
 
+    # Inicialización (como en la imagen)
     i = 0
+    y0, y1 = n, a
+    u0, u1 = 1, 0
+    v0, v1 = 0, 1
 
-    pasos.append("Inicializamos:")
-    pasos.append(f"r0={r0}, r1={r1}")
+    # Primera fila (i=0)
+    tabla.append({
+        "i": i,
+        "yi": y0,
+        "gi": "-",
+        "ui": u0,
+        "vi": v0
+    })
 
-    while r1 != 0:
-        q = r0 // r1
+    i += 1
 
-        tabla.append({
-            "Iteración": i,
-            "r0": r0,
-            "r1": r1,
-            "q": q,
-            "s0": s0,
-            "s1": s1,
-            "t0": t0,
-            "t1": t1
-        })
+    # Segunda fila (i=1)
+    tabla.append({
+        "i": i,
+        "yi": y1,
+        "gi": "-",
+        "ui": u1,
+        "vi": v1
+    })
 
-        pasos.append(f"q = {r0} // {r1} = {q}")
+    pasos.append("\n📌 Construimos la tabla:")
 
-        r0, r1 = r1, r0 - q * r1
-        s0, s1 = s1, s0 - q * s1
-        t0, t1 = t1, t0 - q * t1
+    # Iteraciones
+    while y1 != 0:
+        g = y0 // y1
+        y2 = y0 - g * y1
+        u2 = u0 - g * u1
+        v2 = v0 - g * v1
 
         i += 1
 
-    pasos.append(f"MCD = {r0}")
+        tabla.append({
+            "i": i,
+            "yi": y2,
+            "gi": g,
+            "ui": u2,
+            "vi": v2
+        })
 
-    if r0 == 1:
-        inverso = t0 % n
-        pasos.append(f"Inverso multiplicativo = {inverso}")
+        pasos.append(f"Iteración {i}:")
+        pasos.append(f"g = {y0} // {y1} = {g}")
+        pasos.append(f"y = {y0} - {g}*{y1} = {y2}")
+        pasos.append(f"u = {u0} - {g}*{u1} = {u2}")
+        pasos.append(f"v = {v0} - {g}*{v1} = {v2}")
+
+        y0, y1 = y1, y2
+        u0, u1 = u1, u2
+        v0, v1 = v1, v2
+
+    pasos.append("\n📌 Terminamos cuando yi = 0")
+    pasos.append(f"MCD = {y0}")
+
+    # Número de pasos
+    num_pasos = len(tabla) - 1
+    pasos.append(f"Número de pasos = {num_pasos}")
+
+    if y0 == 1:
+        inverso = v0 % n
+
+        pasos.append("\n✅ Como el MCD = 1, sí existe inverso")
+        pasos.append(f"Inverso = {v0} mod {n} = {inverso}")
+        pasos.append(f"Verificación: ({a} * {inverso}) mod {n} = {(a * inverso) % n}")
     else:
         inverso = None
-        pasos.append("No existe inverso")
+        pasos.append("\n❌ No existe inverso multiplicativo")
 
     return inverso, tabla, pasos
