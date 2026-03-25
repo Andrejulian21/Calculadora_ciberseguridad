@@ -89,21 +89,36 @@ def cifrado_atbash(texto):
     pasos = []
     resultado = ""
 
-    abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    inverso = abecedario[::-1]
+    abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
-    pasos.append("ATBASH invierte el alfabeto")
+    pasos.append(f'🔐 Ejemplo: Cifrar la palabra "{texto.upper()}"')
+    pasos.append("")
 
+    # Paso 1: posiciones
+    pasos.append("📌 Buscamos las posiciones:")
     for letra in texto.upper():
         if letra in abecedario:
             pos = abecedario.index(letra)
-            nueva = inverso[pos]
+            pasos.append(f"{letra} = {pos}")
 
-            pasos.append(f"{letra} → {nueva}")
+    pasos.append("")
+    pasos.append("📌 Aplicamos el espejo (26 - P):")
 
-            resultado += nueva
+    # Paso 2: cálculo
+    for letra in texto.upper():
+        if letra in abecedario:
+            pos = abecedario.index(letra)
+            nueva_pos = 26 - pos
+            nueva_letra = abecedario[nueva_pos]
+
+            pasos.append(f"{letra}: 26 - {pos} = {nueva_pos} → {nueva_letra}")
+
+            resultado += nueva_letra
         else:
             resultado += letra
+
+    pasos.append("")
+    pasos.append(f"✅ Resultado: {resultado}")
 
     return resultado, pasos
 
