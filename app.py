@@ -142,89 +142,140 @@ with tabs[0]:
 with tabs[1]:
     from clasica import *
 
-st.header("🔐 Criptografía Clásica")
+    st.header("🔐 Criptografía Clásica")
 
-opcion = st.selectbox("Seleccione método", [
-    "2.1 Módulo 27",
-    "2.2 César",
-    "2.3 Vernam",
-    "2.4 ATBASH",
-    "2.5 Transposición",
-    "2.6 Afín",
-    "2.7 Sustitución"
-])
+    opcion = st.selectbox("Seleccione método", [
+        "2.1 Módulo 27",
+        "2.2 César",
+        "2.3 Vernam",
+        "2.4 ATBASH",
+        "2.5 Transposición",
+        "2.6 Afín",
+        "2.7 Sustitución"
+    ])
 
-texto = st.text_input("Texto")
+    texto = st.text_input("Texto")
 
-if opcion == "2.1 Módulo 27":
-    k = st.number_input("clave", step=1)
-    if st.button("Cifrar"):
-        res, pasos = cifrado_mod27(texto, k)
+    if opcion == "2.1 Módulo 27":
+        k = st.number_input("clave", step=1)
+        if st.button("Cifrar"):
+            res, pasos = cifrado_mod27(texto, k)
 
-elif opcion == "2.2 César":
-    k = st.number_input("Clave", step=1)
-    if st.button("Cifrar"):
-        res, pasos = cifrado_cesar(texto, k)
+    elif opcion == "2.2 César":
+        k = st.number_input("Clave", step=1)
+        if st.button("Cifrar"):
+            res, pasos = cifrado_cesar(texto, k)
 
-elif opcion == "2.3 Vernam":
-    st.subheader("🔐 Cifrado Vernam (Módulo 27)")
-    
+    elif opcion == "2.3 Vernam":
+        st.subheader("🔐 Cifrado Vernam (Módulo 27)")
+        
 
-    clave_input = st.text_input("Clave (Mismo tamaño)")
+        clave_input = st.text_input("Clave (Mismo tamaño)")
 
-    # Feedback en tiempo real sobre la longitud
-    if texto and clave_input:
-        if len(texto) != len(clave_input):
-            st.error(f"⚠️ Longitud incorrecta: Texto ({len(texto)}) vs Clave ({len(clave_input)})")
-        else:
-            st.success("✅ Longitudes coincidentes")
-
-    if st.button("Ejecutar Cifrado"):
+        # Feedback en tiempo real sobre la longitud
         if texto and clave_input:
-            res, pasos = cifrado_vernam(texto, clave_input)
-            
-            if res:
-                st.info(f"**Resultado Final:** {res}")
-                with st.expander("Ver proceso detallado"):
-                    for p in pasos:
-                        st.markdown(p)
+            if len(texto) != len(clave_input):
+                st.error(f"⚠️ Longitud incorrecta: Texto ({len(texto)}) vs Clave ({len(clave_input)})")
             else:
-                st.error(pasos[0]) # Muestra el error de validación
-        else:
-            st.warning("Por favor, completa ambos campos.")
+                st.success("✅ Longitudes coincidentes")
 
-elif opcion == "2.4 ATBASH":
-    if st.button("Cifrar"):
-        res, pasos = cifrado_atbash(texto)
+        if st.button("Ejecutar Cifrado"):
+            if texto and clave_input:
+                res, pasos = cifrado_vernam(texto, clave_input)
+                
+                if res:
+                    st.info(f"**Resultado Final:** {res}")
+                    with st.expander("Ver proceso detallado"):
+                        for p in pasos:
+                            st.markdown(p)
+                else:
+                    st.error(pasos[0]) # Muestra el error de validación
+            else:
+                st.warning("Por favor, completa ambos campos.")
 
-elif opcion == "2.5 Transposición":
-    col = st.number_input("Columnas", step=1)
-    if st.button("Cifrar"):
-        res, pasos, matriz = transposicion_columnar(texto, col)
-        st.write("Matriz:")
-        st.table(matriz)
+    elif opcion == "2.4 ATBASH":
+        if st.button("Cifrar"):
+            res, pasos = cifrado_atbash(texto)
 
-elif opcion == "2.6 Afín":
-    a = st.number_input("a", step=1)
-    b = st.number_input("b", step=1)
-    if st.button("Cifrar"):
-        res, pasos = cifrado_afin(texto, a, b)
+    elif opcion == "2.5 Transposición":
+        col = st.number_input("Columnas", step=1)
+        if st.button("Cifrar"):
+            res, pasos, matriz = transposicion_columnar(texto, col)
+            st.write("Matriz:")
+            st.table(matriz)
 
-elif opcion == "2.7 Sustitución":
-    clave = st.text_input("Clave (27 letras)")
-    if st.button("Cifrar"):
-        res, pasos = sustitucion_simple(texto, clave)
+    elif opcion == "2.6 Afín":
+        a = st.number_input("a", step=1)
+        b = st.number_input("b", step=1)
+        if st.button("Cifrar"):
+            res, pasos = cifrado_afin(texto, a, b)
 
-# Mostrar pasos
-if 'res' in locals():
-    st.subheader("🧮 Proceso")
-    for p in pasos:
-        st.write(p)
+    elif opcion == "2.7 Sustitución":
+        clave = st.text_input("Clave (27 letras)")
+        if st.button("Cifrar"):
+            res, pasos = sustitucion_simple(texto, clave)
 
-    st.success(f"Resultado: {res}")
+    # Mostrar pasos
+    if 'res' in locals():
+        st.subheader("🧮 Proceso")
+        for p in pasos:
+            st.write(p)
+
+        st.success(f"Resultado: {res}")
 
 with tabs[2]:
-    st.info("Módulo en construcción...")
+    from moderna import *
+
+    st.header("🔐 Criptografía Moderna")
+
+    opcion = st.selectbox("Seleccione método", [
+        "3.1 Diffie-Hellman",
+        "3.2 RSA",
+        "3.3 Exponenciación rápida"
+    ])
+
+    # =========================
+    # DIFFIE HELLMAN
+    # =========================
+    if opcion == "3.1 Diffie-Hellman":
+        p = st.number_input("p (primo)", step=1)
+        g = st.number_input("g (base)", step=1)
+        a = st.number_input("Clave privada A", step=1)
+        b = st.number_input("Clave privada B", step=1)
+
+        if st.button("Calcular"):
+            res, pasos = diffie_hellman(p, g, a, b)
+
+    # =========================
+    # RSA
+    # =========================
+    elif opcion == "3.2 RSA":
+        p = st.number_input("p", step=1)
+        q = st.number_input("q", step=1)
+        e = st.number_input("e", step=1)
+        m = st.number_input("Mensaje (número)", step=1)
+
+        if st.button("Calcular"):
+            res, pasos = rsa(p, q, e, m)
+
+    # =========================
+    # EXPONENCIACIÓN RÁPIDA
+    # =========================
+    elif opcion == "3.3 Exponenciación rápida":
+        base = st.number_input("Base", step=1)
+        exp = st.number_input("Exponente", step=1)
+        mod = st.number_input("Módulo", step=1)
+
+        if st.button("Calcular"):
+            res, pasos = exponenciacion_rapida(base, exp, mod)
+
+    # Mostrar resultados
+    if 'res' in locals():
+        st.subheader("🧮 Proceso")
+        for p in pasos:
+            st.write(p)
+
+        st.success(f"Resultado: {res}")
 
 with tabs[3]:
     st.info("Módulo en construcción...")
