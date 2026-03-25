@@ -12,16 +12,32 @@ def calcular_modulo(a, n):
 
     return r, pasos
 
-def inverso_aditivo(a, n):
-    pasos = []
-
-    resultado = (n - a) % n
-
-    pasos.append(f"Calculamos el inverso aditivo de {a} mod {n}")
-    pasos.append(f"Inverso aditivo = (n - a) mod n")
-    pasos.append(f"Inverso aditivo = ({n} - {a}) mod {n} = {resultado}")
-
+def inverso_aditivo_modular(a, n):
+    """
+    Calcula el inverso aditivo de 'a' en un sistema de módulo 'n'
+    y devuelve el proceso paso a paso.
+    """
+    # 1. Normalizamos 'a' por si el usuario ingresa un número mayor al módulo
+    a_normalizado = a % n
+    
+    # 2. Aplicamos la lógica: (n - a) mod n
+    # El segundo % n es vital para el caso donde a_normalizado sea 0
+    resultado = (n - a_normalizado) % n
+    
+    pasos = [
+        f"--- Cálculo del Inverso Aditivo para {a} (módulo {n}) ---",
+        f"1. Normalizar el número: {a} mod {n} = {a_normalizado}",
+        f"2. Aplicar la fórmula: (Módulo - Número) mod Módulo",
+        f"3. Sustituir valores: ({n} - {a_normalizado}) mod {n}",
+        f"4. Resultado: El inverso aditivo es {resultado}"
+    ]
+    
     return resultado, pasos
+
+# Ejemplo de uso:
+res, proceso = inverso_aditivo_modular(9, 12)
+print("\n".join(proceso))
+
 def inverso_xor(a, b):
     pasos = []
 
