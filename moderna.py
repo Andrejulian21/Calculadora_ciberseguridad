@@ -66,10 +66,10 @@ def exponenciacion_rapida(base, exp, mod):
     for i, bit in enumerate(reversed(exp_binario)):
         if bit == '1':
             resultado = (resultado * base_mod) % mod
-            pasos.append(f"Bit {i} (1): resultado = (resultado * base_mod) mod {mod} = {resultado}")
+            pasos.append(f"Bit {i} (1): {resultado} = ({resultado} * {base_mod}) mod {mod} = {resultado}")
         else:
-            pasos.append(f"Bit {i} (0): resultado sin cambio = {resultado}")
+            pasos.append(f"Bit {i} (0): {resultado} sin cambio = {resultado}")
         base_mod = (base_mod * base_mod) % mod
-        pasos.append(f"Base al cuadrado mod {mod}: base_mod = (base_mod^2) mod {mod} = {base_mod}")
+        pasos.append(f"Base al cuadrado mod {mod}: {base_mod} = ({base_mod}^2) mod {mod} = {base_mod}")
 
     return resultado, pasos
