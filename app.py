@@ -376,9 +376,9 @@ with tabs[5]:
 
     st.header("🧂 Protocolo SALT")
 
-    texto = st.text_input("Texto", key="salt_texto")
-    salt_val = st.text_input("Salt", key="salt_salt")
-    tipo = st.selectbox("Algoritmo", ["md5", "sha256", "sha512"], key="salt_tipo")
+    texto = st.text_input("Texto")
+    salt_val = st.text_input("Salt")
+    tipo = st.selectbox("Algoritmo", ["md5", "sha256", "sha512"])
 
     if st.button("Generar Hash"):
         res, pasos = hash_con_salt(texto, salt_val, tipo)
