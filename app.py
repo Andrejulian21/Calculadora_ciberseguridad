@@ -296,24 +296,31 @@ with tabs[3]:
         "4.2 SHA256",
         "4.3 SHA512"
     ])
+    
 
-
-    if st.button("Calcular Hash"):
-        if opcion == "4.1 MD5":
-            texto = st.text_input("Texto")
+    if opcion == "4.1 MD5":
+        texto = st.text_input("Texto")
+        if st.button("Calcular Hash"):
             res, pasos = hash_md5(texto)
-        elif opcion == "4.2 SHA256":
-            texto = st.text_input("Texto")
+            for p in pasos:
+                st.write(p)
+            st.success(res)
+
+    elif opcion == "4.2 SHA256":
+        texto = st.text_input("Texto")
+        if st.button("Calcular Hash"):
             res, pasos = hash_sha256(texto)
-        elif opcion == "4.3 SHA512":
-            texto = st.text_input("Texto")
+            for p in pasos:
+                st.write(p)
+            st.success(res)
 
+    elif opcion == "4.3 SHA512":
+        texto = st.text_input("Texto")
+        if st.button("Calcular Hash"):
             res, pasos = hash_sha512(texto)
-
-        for p in pasos:
-            st.write(p)
-
-        st.success(res)
+            for p in pasos:
+                st.write(p)
+            st.success(res)
 with tabs[4]:
     from codificacion import *
 
@@ -326,46 +333,54 @@ with tabs[4]:
         "Base64"
     ])
 
+    st.divider()
 
-
-    if st.button("Ejecutar"):
-        if opcion == "ASCII":
-            accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-            texto = st.text_input("Entrada")
+    if opcion == "ASCII":
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
+        texto = st.text_input("Entrada")
+        if st.button("Ejecutar"):
             res, pasos = ascii_codificar(texto) if accion=="Codificar" else ascii_decodificar(texto)
+            for p in pasos:
+                st.write(p)
+            st.success(res)
 
-        elif opcion == "Hexa":
-            accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-            texto = st.text_input("Entrada")
+    elif opcion == "Hexa":
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
+        texto = st.text_input("Entrada")
+        if st.button("Ejecutar"):
             res, pasos = hexa_codificar(texto) if accion=="Codificar" else hexa_decodificar(texto)
+            for p in pasos:
+                st.write(p)
+            st.success(res)
 
-        elif opcion == "Binario":
-            accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-            texto = st.text_input("Entrada")
+    elif opcion == "Binario":
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
+        texto = st.text_input("Entrada")
+        if st.button("Ejecutar"):
             res, pasos = binario_codificar(texto) if accion=="Codificar" else binario_decodificar(texto)
+            for p in pasos:
+                st.write(p)
+            st.success(res)
 
-        elif opcion == "Base64":
-            accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-            texto = st.text_input("Entrada")
+    elif opcion == "Base64":
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
+        texto = st.text_input("Entrada")
+        if st.button("Ejecutar"):
             res, pasos = base64_codificar(texto) if accion=="Codificar" else base64_decodificar(texto)
-
-        for p in pasos:
-            st.write(p)
-
-        st.success(res)
+            for p in pasos:
+                st.write(p)
+            st.success(res)
 
 with tabs[5]:
     from salt import *
 
     st.header("🧂 Protocolo SALT")
 
-
+    texto = st.text_input("Texto")
+    salt_val = st.text_input("Salt")
+    tipo = st.selectbox("Algoritmo", ["md5", "sha256", "sha512"])
 
     if st.button("Generar Hash"):
-        texto = st.text_input("Texto")
-        salt_val = st.text_input("Salt")
-
-        tipo = st.selectbox("Algoritmo", ["md5", "sha256", "sha512"])
         res, pasos = hash_con_salt(texto, salt_val, tipo)
 
         for p in pasos:
