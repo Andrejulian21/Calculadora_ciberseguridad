@@ -102,7 +102,7 @@ def cifrado_atbash(texto):
             pasos.append(f"{letra} = {pos}")
 
     pasos.append("")
-    pasos.append("📌 Aplicamos el espejo (26 - P):")
+    pasos.append("📌 Aplicamos el espejo (27 - P):")
 
     # Paso 2: cálculo
     for letra in texto.upper():
@@ -111,7 +111,7 @@ def cifrado_atbash(texto):
             nueva_pos = 26 - pos
             nueva_letra = abecedario[nueva_pos]
 
-            pasos.append(f"{letra}: 26 - {pos} = {nueva_pos} → {nueva_letra}")
+            pasos.append(f"{letra}: 27 - {pos} = {nueva_pos} → {nueva_letra}")
 
             resultado += nueva_letra
         else:
