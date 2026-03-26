@@ -108,7 +108,7 @@ def cifrado_atbash(texto):
     for letra in texto.upper():
         if letra in abecedario:
             pos = abecedario.index(letra)
-            nueva_pos = 26 - pos
+            nueva_pos = 27 - pos
             nueva_letra = abecedario[nueva_pos]
 
             pasos.append(f"{letra}: 27 - {pos} = {nueva_pos} → {nueva_letra}")
