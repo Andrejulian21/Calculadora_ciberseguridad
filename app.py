@@ -299,24 +299,24 @@ with tabs[3]:
     
 
     if opcion == "4.1 MD5":
-        texto = st.text_input("Texto")
-        if st.button("Calcular Hash"):
+        texto = st.text_input("Texto", key="md5_text")
+        if st.button("Calcular Hash", key="md5_button"):
             res, pasos = hash_md5(texto)
             for p in pasos:
                 st.write(p)
             st.success(res)
 
     elif opcion == "4.2 SHA256":
-        texto = st.text_input("Texto")
-        if st.button("Calcular Hash"):
+        texto = st.text_input("Texto", key="sha256_text")
+        if st.button("Calcular Hash", key="sha256_button"):
             res, pasos = hash_sha256(texto)
             for p in pasos:
                 st.write(p)
             st.success(res)
 
     elif opcion == "4.3 SHA512":
-        texto = st.text_input("Texto")
-        if st.button("Calcular Hash"):
+        texto = st.text_input("Texto", key="sha512_text")
+        if st.button("Calcular Hash", key="sha512_button"):
             res, pasos = hash_sha512(texto)
             for p in pasos:
                 st.write(p)
@@ -336,36 +336,36 @@ with tabs[4]:
     st.divider()
 
     if opcion == "ASCII":
-        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-        texto = st.text_input("Entrada")
-        if st.button("Ejecutar"):
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"], key="ascii_accion")
+        texto = st.text_input("Entrada", key="ascii_text")
+        if st.button("Ejecutar", key="ascii_button"):
             res, pasos = ascii_codificar(texto) if accion=="Codificar" else ascii_decodificar(texto)
             for p in pasos:
                 st.write(p)
             st.success(res)
 
     elif opcion == "Hexa":
-        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-        texto = st.text_input("Entrada")
-        if st.button("Ejecutar"):
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"], key="hexa_accion")
+        texto = st.text_input("Entrada", key="hexa_text")
+        if st.button("Ejecutar", key="hexa_button"):
             res, pasos = hexa_codificar(texto) if accion=="Codificar" else hexa_decodificar(texto)
             for p in pasos:
                 st.write(p)
             st.success(res)
 
     elif opcion == "Binario":
-        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-        texto = st.text_input("Entrada")
-        if st.button("Ejecutar"):
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"], key="binario_accion")
+        texto = st.text_input("Entrada", key="binario_text")
+        if st.button("Ejecutar", key="binario_button"):
             res, pasos = binario_codificar(texto) if accion=="Codificar" else binario_decodificar(texto)
             for p in pasos:
                 st.write(p)
             st.success(res)
 
     elif opcion == "Base64":
-        accion = st.selectbox("Acción", ["Codificar", "Decodificar"])
-        texto = st.text_input("Entrada")
-        if st.button("Ejecutar"):
+        accion = st.selectbox("Acción", ["Codificar", "Decodificar"], key="base64_accion")
+        texto = st.text_input("Entrada", key="base64_text")
+        if st.button("Ejecutar", key="base64_button"):
             res, pasos = base64_codificar(texto) if accion=="Codificar" else base64_decodificar(texto)
             for p in pasos:
                 st.write(p)
