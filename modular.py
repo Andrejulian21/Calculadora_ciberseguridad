@@ -83,7 +83,7 @@ def inverso_xor(a, b):
 def calcular_mcd(a, b):
     pasos = []
 
-    pasos.append("📘 Definición:")
+    pasos.append("Definición:")
     pasos.append("El MCD (Máximo Común Divisor) es el mayor número que divide a ambos sin dejar residuo.")
 
     pasos.append("\nUsamos el Algoritmo de Euclides:")
@@ -98,7 +98,7 @@ def calcular_mcd(a, b):
         q = a // b
         r = a % b
 
-        pasos.append(f"\n🔹 Iteración {i}:")
+        pasos.append(f"\nIteración {i}:")
         pasos.append(f"Dividimos {a} entre {b}")
         pasos.append(f"{a} = {b} * {q} + {r}")
         pasos.append(f"Residuo = {r}")
@@ -117,7 +117,7 @@ def calcular_mcd(a, b):
     else:
         pasos.append("\nConclusión:")
         pasos.append(f"El MCD es {a}, no es 1")
-        pasos.append("✖ No existe inverso multiplicativo")
+        pasos.append("No existe inverso multiplicativo")
         existe = False
 
     return a, existe, pasos
