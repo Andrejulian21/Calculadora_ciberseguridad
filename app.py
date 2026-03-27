@@ -182,14 +182,6 @@ with tabs[1]:
         if st.button("Ejecutar Cifrado"):
             if texto and clave_input:
                 res, pasos = cifrado_vernam(texto, clave_input)
-                
-                if res:
-                    st.info(f"**Resultado Final:** {res}")
-                    with st.expander("Ver proceso detallado"):
-                        for p in pasos:
-                            st.markdown(p)
-                else:
-                    st.error(pasos[0]) # Muestra el error de validación
             else:
                 st.warning("Por favor, completa ambos campos.")
 

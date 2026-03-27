@@ -42,7 +42,7 @@ def rsa(p, q, e, mensaje):
     if p == q:
         return None, ["Error: p y q no pueden ser iguales."]
 
-    pasos.append("🔑 **Generación de claves RSA**\n")
+    pasos.append("**Generación de claves RSA**\n")
 
     # Paso 1: n
     n = p * q
@@ -95,7 +95,7 @@ def rsa(p, q, e, mensaje):
 def exponenciacion_rapida(base, exp, mod):
     pasos = []
 
-    pasos.append("⚡ **Exponenciación Rápida (Método Binario)**\n")
+    pasos.append("**Exponenciación Rápida (Método Binario)**\n")
     pasos.append(f"Calculamos: {base}^{exp} mod {mod}\n")
 
     # Representación binaria
