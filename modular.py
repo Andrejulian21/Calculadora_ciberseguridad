@@ -6,17 +6,13 @@ def calcular_modulo(a, n):
     r = a % n
 
     pasos.append(f"Definicion: a mod n = r, donde a = n*q + r, con 0 <= r < n")
-    pasos.append(f"---")
     pasos.append(f"Datos: a = {a}, n = {n}")
-    pasos.append(f"---")
     pasos.append(f"Paso 1 - Calcular el cociente entero:")
     pasos.append(f"   q = floor({a} / {n}) = {q}")
-    pasos.append(f"---")
     pasos.append(f"Paso 2 - Calcular el residuo:")
     pasos.append(f"   r = {a} - ({n} * {q})")
     pasos.append(f"   r = {a} - {n * q}")
     pasos.append(f"   r = {r}")
-    pasos.append(f"---")
     pasos.append(f"Verificacion: {a} = {n} * {q} + {r} = {n*q + r} (correcto)")
 
     return r, pasos
