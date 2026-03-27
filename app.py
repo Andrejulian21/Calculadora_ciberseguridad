@@ -41,11 +41,12 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = calcular_modulo(a, n)
 
+            st.success(f"Resultado: {a} mod {n} = {resultado}")
             st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
-            st.success(f"Resultado: {a} mod {n} = {resultado}")
+            
 
     # =========================
     # 1.2 INVERSO ADITIVO
@@ -57,11 +58,12 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = inverso_aditivo(a, n)
 
+            st.success(f"Inverso aditivo: {resultado}")
             st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
-            st.success(f"Inverso aditivo: {resultado}")
+            
 
     # =========================
     # 1.3 XOR
@@ -73,11 +75,12 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = inverso_xor(a, b)
 
+            st.success(f"Resultado XOR: {resultado}")
             st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
-            st.success(f"Resultado XOR: {resultado}")
+
 
     # =========================
     # 1.4 MCD
@@ -89,11 +92,12 @@ with tabs[0]:
         if st.button("Calcular"):
             mcd, existe, pasos = calcular_mcd(a, b)
 
+            st.success(f"MCD = {mcd}")
             st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
-            st.success(f"MCD = {mcd}")
+            
 
     # =========================
     # 1.5 INVERSO MULTIPLICATIVO TRADICIONAL
@@ -105,14 +109,15 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = inverso_multiplicativo_tradicional(a, n)
 
-            st.subheader("Proceso")
-            for paso in pasos:
-                st.write(paso)
-
+            
             if resultado:
                 st.success(f"Inverso multiplicativo: {resultado}")
             else:
                 st.error("No existe inverso multiplicativo")
+            st.subheader("Proceso")
+            for paso in pasos:
+                st.write(paso)
+
 
     # =========================
     # 1.6 AEE
@@ -124,6 +129,10 @@ with tabs[0]:
         if st.button("Calcular"):
             inverso, tabla, pasos = algoritmo_extendido_euclides(a, n)
 
+            if inverso is not None:
+                st.success(f"Inverso multiplicativo: {inverso}")
+            else:
+                st.error("No existe inverso multiplicativo")
             st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
@@ -131,10 +140,7 @@ with tabs[0]:
             st.subheader("Tabla del algoritmo")
             st.dataframe(tabla)
 
-            if inverso is not None:
-                st.success(f"Inverso multiplicativo: {inverso}")
-            else:
-                st.error("No existe inverso multiplicativo")
+
 
 # =========================
 # RESTO DE MÓDULOS (PLACEHOLDER)
