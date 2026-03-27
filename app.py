@@ -359,12 +359,12 @@ with tabs[4]:
 
         if st.button("Ejecutar ASCII", key="ascii_btn"):
             res, pasos = ascii_codificar(texto_ascii) if accion_ascii == "Codificar" else ascii_decodificar(texto_ascii)
-
+            st.success(res)
             st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
-            st.success(res)
+            
 
     # =========================
     # HEXA

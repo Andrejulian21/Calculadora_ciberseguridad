@@ -57,7 +57,7 @@ def cifrado_vernam(texto, clave):
     if len(texto) != len(clave):
         return None, ["Error: En Vernam, la clave debe tener la misma longitud que el texto."]
 
-    pasos.append("🔐 **Cifrado Vernam (Módulo 27)**")
+    pasos.append("**Cifrado Vernam (Módulo 27)**")
     pasos.append("Fórmula: $C = (P + K) \pmod{27}$\n")
 
     for i, (t_char, k_char) in enumerate(zip(texto, clave)):
@@ -69,7 +69,7 @@ def cifrado_vernam(texto, clave):
             res_mod = suma % 27
             nueva_letra = abecedario[res_mod]
 
-            pasos.append(f"### 🔹 Posición {i+1}: {t_char}")
+            pasos.append(f"### Posición {i+1}: {t_char}")
             pasos.append(f"**Cálculo:** {p_idx} (Letra) + {k_idx} (Clave) = {suma}")
             
             if suma >= 27:
