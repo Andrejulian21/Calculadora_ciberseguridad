@@ -88,31 +88,27 @@ def cifrado_vernam(texto, clave):
 def cifrado_atbash(texto):
     pasos = []
     resultado = ""
-
-    abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"  # 27 letras
+    n = len(abecedario) - 1  # 26, pero ahora dinámico
 
     pasos.append(f'🔐 Ejemplo: Cifrar la palabra "{texto.upper()}"')
     pasos.append("")
-
-    # Paso 1: posiciones
     pasos.append("📌 Buscamos las posiciones:")
+
     for letra in texto.upper():
         if letra in abecedario:
             pos = abecedario.index(letra)
             pasos.append(f"{letra} = {pos}")
 
     pasos.append("")
-    pasos.append("📌 Aplicamos el espejo (26 - P):")
+    pasos.append(f"📌 Aplicamos el espejo ({n} - P):")
 
-    # Paso 2: cálculo
     for letra in texto.upper():
         if letra in abecedario:
             pos = abecedario.index(letra)
-            nueva_pos = 26 - pos
+            nueva_pos = n - pos  # Antes era 26 hardcodeado
             nueva_letra = abecedario[nueva_pos]
-
-            pasos.append(f"{letra}: 26 - {pos} = {nueva_pos} → {nueva_letra}")
-
+            pasos.append(f"{letra}: {n} - {pos} = {nueva_pos} → {nueva_letra}")
             resultado += nueva_letra
         else:
             resultado += letra
