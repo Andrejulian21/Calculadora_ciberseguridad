@@ -289,7 +289,7 @@ with tabs[2]:
 with tabs[3]:
     from hashing import *
 
-    st.header("Algoritmos Hash")
+    st.header("📊 Algoritmos Hash")
 
     opcion = st.selectbox("Seleccione", [
         "4.1 MD5",
@@ -347,7 +347,7 @@ with tabs[3]:
 with tabs[4]:
     from codificacion import *
 
-    st.header("Codificación")
+    st.header("🔢 Codificación")
 
     opcion = st.selectbox("Seleccione", [
         "ASCII",
