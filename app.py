@@ -168,8 +168,6 @@ with tabs[1]:
 
     elif opcion == "2.3 Vernam":
         st.subheader("Cifrado Vernam (Módulo 27)")
-        
-
         clave_input = st.text_input("Clave (Mismo tamaño)")
 
         # Feedback en tiempo real sobre la longitud
@@ -300,11 +298,12 @@ with tabs[3]:
         if st.button("Calcular MD5", key="md5_btn"):
             res, pasos = hash_md5(texto_md5)
 
+            st.success(res)
             st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
-            st.success(res)
+            
 
     # =========================
     # 4.2 SHA256
@@ -314,12 +313,12 @@ with tabs[3]:
 
         if st.button("Calcular SHA256", key="sha256_btn"):
             res, pasos = hash_sha256(texto_sha256)
-
+            st.success(res)
             st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
-            st.success(res)
+            
 
     # =========================
     # 4.3 SHA512
@@ -329,12 +328,12 @@ with tabs[3]:
 
         if st.button("Calcular SHA512", key="sha512_btn"):
             res, pasos = hash_sha512(texto_sha512)
-
+            st.success(res)
             st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
-            st.success(res)
+            
 
 with tabs[4]:
     from codificacion import *
@@ -375,12 +374,12 @@ with tabs[4]:
 
         if st.button("Ejecutar Hexa", key="hexa_btn"):
             res, pasos = hexa_codificar(texto_hexa) if accion_hexa == "Codificar" else hexa_decodificar(texto_hexa)
-
+            st.success(res)
             st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
-            st.success(res)
+            
 
     # =========================
     # BINARIO
@@ -392,11 +391,12 @@ with tabs[4]:
         if st.button("Ejecutar Binario", key="bin_btn"):
             res, pasos = binario_codificar(texto_bin) if accion_bin == "Codificar" else binario_decodificar(texto_bin)
 
+            st.success(res)
             st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
-            st.success(res)
+            
 
     # =========================
     # BASE64
@@ -408,11 +408,12 @@ with tabs[4]:
         if st.button("Ejecutar Base64", key="b64_btn"):
             res, pasos = base64_codificar(texto_b64) if accion_b64 == "Codificar" else base64_decodificar(texto_b64)
 
+            st.success(res)
             st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
-            st.success(res)
+            
 with tabs[5]:
     from salt import *
 
@@ -426,8 +427,9 @@ with tabs[5]:
     if st.button("Generar Hash con SALT", key="salt_btn"):
         res, pasos = hash_con_salt(texto_salt, salt_val, tipo_hash)
 
+        st.success(res)
         st.subheader("Proceso")
         for p in pasos:
             st.write(p)
 
-        st.success(res)
+        
