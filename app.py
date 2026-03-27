@@ -35,8 +35,8 @@ with tabs[0]:
     # 1.1 MÓDULO
     # =========================
     if opcion == "1.1 Calcular módulo":
-        a = st.number_input("Ingrese a", step=1)
-        n = st.number_input("Ingrese n", step=1, min_value=1)
+        a = st.number_input("Número a calcular su módulo", step=1)
+        n = st.number_input("Valor del módulo (n)", step=1, min_value=1)
 
         if st.button("Calcular"):
             resultado, pasos = calcular_modulo(a, n)
@@ -51,8 +51,8 @@ with tabs[0]:
     # 1.2 INVERSO ADITIVO
     # =========================
     elif opcion == "1.2 Inverso aditivo":
-        a = st.number_input("Ingrese a", step=1, key="a2")
-        n = st.number_input("Ingrese n", step=1, min_value=1, key="n2")
+        a = st.number_input("Número a calcular su inverso aditivo", step=1, key="a2")
+        n = st.number_input("Valor del módulo (n)", step=1, min_value=1, key="n2")
 
         if st.button("Calcular"):
             resultado, pasos = inverso_aditivo(a, n)
@@ -67,8 +67,8 @@ with tabs[0]:
     # 1.3 XOR
     # =========================
     elif opcion == "1.3 XOR":
-        a = st.number_input("Ingrese número A", step=1, key="a3")
-        b = st.number_input("Ingrese número B", step=1, key="b3")
+        a = st.number_input("Primer número (A)", step=1, key="a3")
+        b = st.number_input("Segundo número (B)", step=1, key="b3")
 
         if st.button("Calcular"):
             resultado, pasos = inverso_xor(a, b)
@@ -83,8 +83,8 @@ with tabs[0]:
     # 1.4 MCD
     # =========================
     elif opcion == "1.4 MCD e inverso multiplicativo":
-        a = st.number_input("Ingrese a", step=1, key="a4")
-        b = st.number_input("Ingrese b", step=1, key="b4")
+        a = st.number_input("Primer número para calcular el MCD", step=1, key="a4")
+        b = st.number_input("Segundo número para calcular el MCD", step=1, key="b4")
 
         if st.button("Calcular"):
             mcd, existe, pasos = calcular_mcd(a, b)
@@ -99,8 +99,8 @@ with tabs[0]:
     # 1.5 INVERSO MULTIPLICATIVO TRADICIONAL
     # =========================
     elif opcion == "1.5 Inverso multiplicativo (tradicional)":
-        a = st.number_input("Ingrese a", step=1, key="a5")
-        n = st.number_input("Ingrese n", step=1, min_value=1, key="n5")
+        a = st.number_input("Número a calcular su inverso multiplicativo", step=1, key="a5")
+        n = st.number_input("Valor del módulo (n)", step=1, min_value=1, key="n5")
 
         if st.button("Calcular"):
             resultado, pasos = inverso_multiplicativo_tradicional(a, n)
@@ -118,8 +118,8 @@ with tabs[0]:
     # 1.6 AEE
     # =========================
     elif opcion == "1.6 Algoritmo Extendido de Euclides":
-        a = st.number_input("Ingrese a", step=1, key="a6")
-        n = st.number_input("Ingrese n", step=1, min_value=1, key="n6")
+        a = st.number_input("Número a calcular su inverso multiplicativo", step=1, key="a6")
+        n = st.number_input("Valor del módulo (n)", step=1, min_value=1, key="n6")
 
         if st.button("Calcular"):
             inverso, tabla, pasos = algoritmo_extendido_euclides(a, n)
@@ -157,12 +157,12 @@ with tabs[1]:
     texto = st.text_input("Texto")
 
     if opcion == "2.1 Módulo 27":
-        k = st.number_input("clave", step=1)
+        k = st.number_input("Clave de desplazamiento (k)", step=1)
         if st.button("Cifrar"):
             res, pasos = cifrado_mod27(texto, k)
 
     elif opcion == "2.2 César":
-        k = st.number_input("Clave", step=1)
+        k = st.number_input("Clave de desplazamiento (k)", step=1)
         if st.button("Cifrar"):
             res, pasos = cifrado_cesar(texto, k)
 
@@ -198,20 +198,20 @@ with tabs[1]:
             res, pasos = cifrado_atbash(texto)
 
     elif opcion == "2.5 Transposición":
-        col = st.number_input("Columnas", step=1)
+        col = st.number_input("Número de columnas para la transposición", step=1)
         if st.button("Cifrar"):
             res, pasos, matriz = transposicion_columnar(texto, col)
             st.write("Matriz:")
             st.table(matriz)
 
     elif opcion == "2.6 Afín":
-        a = st.number_input("a", step=1)
-        b = st.number_input("b", step=1)
+        a = st.number_input("Coeficiente multiplicativo (a)", step=1)
+        b = st.number_input("Coeficiente de desplazamiento (b)", step=1)
         if st.button("Cifrar"):
             res, pasos = cifrado_afin(texto, a, b)
 
     elif opcion == "2.7 Sustitución":
-        clave = st.text_input("Clave (27 letras)")
+        clave = st.text_input("Alfabeto de sustitución (27 caracteres)")
         if st.button("Cifrar"):
             res, pasos = sustitucion_simple(texto, clave)
 
@@ -238,10 +238,10 @@ with tabs[2]:
     # DIFFIE HELLMAN
     # =========================
     if opcion == "3.1 Diffie-Hellman":
-        p = st.number_input("p (primo)", step=1)
-        g = st.number_input("g (base)", step=1)
-        a = st.number_input("Clave privada A", step=1)
-        b = st.number_input("Clave privada B", step=1)
+        p = st.number_input("Número primo público (p)", step=1)
+        g = st.number_input("Generador del grupo (g)", step=1)
+        a = st.number_input("Clave privada de A", step=1)
+        b = st.number_input("Clave privada de B", step=1)
 
         if st.button("calcular"):
             res, pasos = diffie_hellman(p, g, a, b)
@@ -271,9 +271,9 @@ with tabs[2]:
     # EXPONENCIACIÓN RÁPIDA
     # =========================
     elif opcion == "3.3 Exponenciación rápida":
-        base = st.number_input("Base", step=1)
+        base = st.number_input("Base de la potencia", step=1)
         exp = st.number_input("Exponente", step=1)
-        mod = st.number_input("Módulo", step=1)
+        mod = st.number_input("Valor del módulo", step=1)
 
         if st.button("calcular"):
             res, pasos = exponenciacion_rapida(base, exp, mod)
