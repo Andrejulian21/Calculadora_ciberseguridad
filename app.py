@@ -273,11 +273,12 @@ with tabs[2]:
 
     # Mostrar resultados
     if 'res' in locals():
+        st.success(f"Resultado: {res}")
         st.subheader("Proceso")
         for p in pasos:
             st.write(p)
 
-        st.success(f"Resultado: {res}")
+        
 
 with tabs[3]:
     from hashing import *
