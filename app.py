@@ -141,10 +141,6 @@ with tabs[0]:
             st.dataframe(tabla)
 
 
-
-# =========================
-# RESTO DE MÓDULOS (PLACEHOLDER)
-# =========================
 with tabs[1]:
     from clasica import *
 
@@ -213,11 +209,12 @@ with tabs[1]:
 
     # Mostrar pasos
     if 'res' in locals():
+        st.success(f"Resultado: {res}")
         st.subheader("Proceso")
         for p in pasos:
             st.write(p)
 
-        st.success(f"Resultado: {res}")
+        
 
 with tabs[2]:
     from moderna import *
