@@ -1,7 +1,7 @@
 def diffie_hellman(p, g, a, b):
     pasos = []
 
-    pasos.append("🔐 Diffie-Hellman")
+    pasos.append("Diffie-Hellman")
     pasos.append(f"p = {p}, g = {g}")
     pasos.append(f"Clave privada A = {a}")
     pasos.append(f"Clave privada B = {b}\n")
@@ -10,7 +10,7 @@ def diffie_hellman(p, g, a, b):
     A = pow(g, a, p)
     B = pow(g, b, p)
 
-    pasos.append("📌 Cálculo de claves públicas:")
+    pasos.append("Cálculo de claves públicas:")
     pasos.append(f"A = g^a mod p = {g}^{a} mod {p} = {A}")
     pasos.append(f"B = g^b mod p = {g}^{b} mod {p} = {B}\n")
 
@@ -18,7 +18,7 @@ def diffie_hellman(p, g, a, b):
     KA = pow(B, a, p)
     KB = pow(A, b, p)
 
-    pasos.append("📌 Clave compartida:")
+    pasos.append("Clave compartida:")
     pasos.append(f"K = B^a mod p = {B}^{a} mod {p} = {KA}")
     pasos.append(f"K = A^b mod p = {A}^{b} mod {p} = {KB}")
 
@@ -29,7 +29,7 @@ import math
 def rsa(p, q, e, mensaje):
     pasos = []
 
-    pasos.append("🔐 RSA")
+    pasos.append("RSA")
 
     n = p * q
     phi = (p - 1) * (q - 1)
@@ -38,7 +38,7 @@ def rsa(p, q, e, mensaje):
     pasos.append(f"φ(n) = ({p}-1)*({q}-1) = {phi}")
 
     if math.gcd(e, phi) != 1:
-        pasos.append("❌ e no es coprimo con φ(n)")
+        pasos.append("e no es coprimo con φ(n)")
         return None, pasos
 
     # inverso de e
@@ -55,7 +55,7 @@ def rsa(p, q, e, mensaje):
 def exponenciacion_rapida(base, exp, mod):
     pasos = []
     
-    pasos.append("🔐 Exponenciación rápida (método binario)")
+    pasos.append("Exponenciación rápida (método binario)")
     pasos.append(f"Calculamos {base}^{exp} (mod {mod})")
 
     exp_bin = bin(exp)[2:]
@@ -83,6 +83,6 @@ def exponenciacion_rapida(base, exp, mod):
 
         pasos.append(f"   Resultado = {resultado}")
 
-    pasos.append(f"\n✅ Resultado final: {base}^{exp} (mod {mod}) = {resultado}")
+    pasos.append(f"\nResultado final: {base}^{exp} (mod {mod}) = {resultado}")
 
     return resultado, pasos

@@ -81,7 +81,7 @@ def calcular_mcd(a, b):
     pasos.append("📘 Definición:")
     pasos.append("El MCD (Máximo Común Divisor) es el mayor número que divide a ambos sin dejar residuo.")
 
-    pasos.append("\n📌 Usamos el Algoritmo de Euclides:")
+    pasos.append("\nUsamos el Algoritmo de Euclides:")
     pasos.append("Se basa en la propiedad:")
     pasos.append("MCD(a, b) = MCD(b, a mod b)")
 
@@ -101,16 +101,16 @@ def calcular_mcd(a, b):
         a, b = b, r
         i += 1
 
-    pasos.append("\n📌 Cuando el residuo es 0, el último valor de a es el MCD")
+    pasos.append("\nCuando el residuo es 0, el último valor de a es el MCD")
     pasos.append(f"MCD = {a}")
 
     if a == 1:
-        pasos.append("\n✅ Conclusión:")
+        pasos.append("\nConclusión:")
         pasos.append("Los números son coprimos (MCD = 1)")
         pasos.append("✔ Sí existe inverso multiplicativo")
         existe = True
     else:
-        pasos.append("\n❌ Conclusión:")
+        pasos.append("\nConclusión:")
         pasos.append(f"El MCD es {a}, no es 1")
         pasos.append("✖ No existe inverso multiplicativo")
         existe = False
@@ -137,7 +137,7 @@ def algoritmo_extendido_euclides(a, n):
     pasos = []
     tabla = []
 
-    pasos.append("📘 Algoritmo Extendido de Euclides (AEE)")
+    pasos.append("Algoritmo Extendido de Euclides (AEE)")
     pasos.append(f"Buscamos el inverso de {a} mod {n}")
 
     # Inicialización (como en la imagen)
@@ -166,7 +166,7 @@ def algoritmo_extendido_euclides(a, n):
         "vi": v1
     })
 
-    pasos.append("\n📌 Construimos la tabla:")
+    pasos.append("\nConstruimos la tabla:")
 
     # Iteraciones
     while y1 != 0:
@@ -195,7 +195,7 @@ def algoritmo_extendido_euclides(a, n):
         u0, u1 = u1, u2
         v0, v1 = v1, v2
 
-    pasos.append("\n📌 Terminamos cuando yi = 0")
+    pasos.append("\nTerminamos cuando yi = 0")
     pasos.append(f"MCD = {y0}")
 
     # Número de pasos
@@ -205,11 +205,11 @@ def algoritmo_extendido_euclides(a, n):
     if y0 == 1:
         inverso = v0 % n
 
-        pasos.append("\n✅ Como el MCD = 1, sí existe inverso")
+        pasos.append("\nComo el MCD = 1, sí existe inverso")
         pasos.append(f"Inverso = {v0} mod {n} = {inverso}")
         pasos.append(f"Verificación: ({a} * {inverso}) mod {n} = {(a * inverso) % n}")
     else:
         inverso = None
-        pasos.append("\n❌ No existe inverso multiplicativo")
+        pasos.append("\nNo existe inverso multiplicativo")
 
     return inverso, tabla, pasos

@@ -41,7 +41,7 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = calcular_modulo(a, n)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
@@ -57,7 +57,7 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = inverso_aditivo(a, n)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
@@ -73,7 +73,7 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = inverso_xor(a, b)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
@@ -89,7 +89,7 @@ with tabs[0]:
         if st.button("Calcular"):
             mcd, existe, pasos = calcular_mcd(a, b)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
@@ -105,7 +105,7 @@ with tabs[0]:
         if st.button("Calcular"):
             resultado, pasos = inverso_multiplicativo_tradicional(a, n)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
@@ -124,11 +124,11 @@ with tabs[0]:
         if st.button("Calcular"):
             inverso, tabla, pasos = algoritmo_extendido_euclides(a, n)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for paso in pasos:
                 st.write(paso)
 
-            st.subheader("📊 Tabla del algoritmo")
+            st.subheader("Tabla del algoritmo")
             st.dataframe(tabla)
 
             if inverso is not None:
@@ -167,7 +167,7 @@ with tabs[1]:
             res, pasos = cifrado_cesar(texto, k)
 
     elif opcion == "2.3 Vernam":
-        st.subheader("🔐 Cifrado Vernam (Módulo 27)")
+        st.subheader("Cifrado Vernam (Módulo 27)")
         
 
         clave_input = st.text_input("Clave (Mismo tamaño)")
@@ -175,9 +175,9 @@ with tabs[1]:
         # Feedback en tiempo real sobre la longitud
         if texto and clave_input:
             if len(texto) != len(clave_input):
-                st.error(f"⚠️ Longitud incorrecta: Texto ({len(texto)}) vs Clave ({len(clave_input)})")
+                st.error(f"Longitud incorrecta: Texto ({len(texto)}) vs Clave ({len(clave_input)})")
             else:
-                st.success("✅ Longitudes coincidentes")
+                st.success("Longitudes coincidentes")
 
         if st.button("Ejecutar Cifrado"):
             if texto and clave_input:
@@ -217,7 +217,7 @@ with tabs[1]:
 
     # Mostrar pasos
     if 'res' in locals():
-        st.subheader("🧮 Proceso")
+        st.subheader("Proceso")
         for p in pasos:
             st.write(p)
 
@@ -250,7 +250,7 @@ with tabs[2]:
     # RSA
     # =========================
     elif opcion == "3.2 RSA":
-        st.subheader("🔑 Criptosistema RSA")
+        st.subheader("Criptosistema RSA")
         
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -280,7 +280,7 @@ with tabs[2]:
 
     # Mostrar resultados
     if 'res' in locals():
-        st.subheader("🧮 Proceso")
+        st.subheader("Proceso")
         for p in pasos:
             st.write(p)
 
@@ -289,7 +289,7 @@ with tabs[2]:
 with tabs[3]:
     from hashing import *
 
-    st.header("🔐 Algoritmos Hash")
+    st.header("Algoritmos Hash")
 
     opcion = st.selectbox("Seleccione", [
         "4.1 MD5",
@@ -308,7 +308,7 @@ with tabs[3]:
         if st.button("Calcular MD5", key="md5_btn"):
             res, pasos = hash_md5(texto_md5)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
@@ -323,7 +323,7 @@ with tabs[3]:
         if st.button("Calcular SHA256", key="sha256_btn"):
             res, pasos = hash_sha256(texto_sha256)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
@@ -338,7 +338,7 @@ with tabs[3]:
         if st.button("Calcular SHA512", key="sha512_btn"):
             res, pasos = hash_sha512(texto_sha512)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
@@ -347,7 +347,7 @@ with tabs[3]:
 with tabs[4]:
     from codificacion import *
 
-    st.header("🔢 Codificación")
+    st.header("Codificación")
 
     opcion = st.selectbox("Seleccione", [
         "ASCII",
@@ -368,7 +368,7 @@ with tabs[4]:
         if st.button("Ejecutar ASCII", key="ascii_btn"):
             res, pasos = ascii_codificar(texto_ascii) if accion_ascii == "Codificar" else ascii_decodificar(texto_ascii)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
@@ -384,7 +384,7 @@ with tabs[4]:
         if st.button("Ejecutar Hexa", key="hexa_btn"):
             res, pasos = hexa_codificar(texto_hexa) if accion_hexa == "Codificar" else hexa_decodificar(texto_hexa)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
@@ -400,7 +400,7 @@ with tabs[4]:
         if st.button("Ejecutar Binario", key="bin_btn"):
             res, pasos = binario_codificar(texto_bin) if accion_bin == "Codificar" else binario_decodificar(texto_bin)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
@@ -416,7 +416,7 @@ with tabs[4]:
         if st.button("Ejecutar Base64", key="b64_btn"):
             res, pasos = base64_codificar(texto_b64) if accion_b64 == "Codificar" else base64_decodificar(texto_b64)
 
-            st.subheader("🧮 Proceso")
+            st.subheader("Proceso")
             for p in pasos:
                 st.write(p)
 
@@ -434,7 +434,7 @@ with tabs[5]:
     if st.button("Generar Hash con SALT", key="salt_btn"):
         res, pasos = hash_con_salt(texto_salt, salt_val, tipo_hash)
 
-        st.subheader("🧮 Proceso")
+        st.subheader("Proceso")
         for p in pasos:
             st.write(p)
 

@@ -55,7 +55,7 @@ def cifrado_vernam(texto, clave):
     clave = clave.upper().replace(" ", "")
 
     if len(texto) != len(clave):
-        return None, ["❌ Error: En Vernam, la clave debe tener la misma longitud que el texto."]
+        return None, ["Error: En Vernam, la clave debe tener la misma longitud que el texto."]
 
     pasos.append("🔐 **Cifrado Vernam (Módulo 27)**")
     pasos.append("Fórmula: $C = (P + K) \pmod{27}$\n")
@@ -91,9 +91,9 @@ def cifrado_atbash(texto):
     abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"  # 27 letras
     n = len(abecedario) - 1  # 26, pero ahora dinámico
 
-    pasos.append(f'🔐 Ejemplo: Cifrar la palabra "{texto.upper()}"')
+    pasos.append(f'Ejemplo: Cifrar la palabra "{texto.upper()}"')
     pasos.append("")
-    pasos.append("📌 Buscamos las posiciones:")
+    pasos.append("Buscamos las posiciones:")
 
     for letra in texto.upper():
         if letra in abecedario:
@@ -101,7 +101,7 @@ def cifrado_atbash(texto):
             pasos.append(f"{letra} = {pos}")
 
     pasos.append("")
-    pasos.append(f"📌 Aplicamos el espejo ({n} - P):")
+    pasos.append(f"Aplicamos el espejo ({n} - P):")
 
     for letra in texto.upper():
         if letra in abecedario:
@@ -114,7 +114,7 @@ def cifrado_atbash(texto):
             resultado += letra
 
     pasos.append("")
-    pasos.append(f"✅ Resultado: {resultado}")
+    pasos.append(f"Resultado: {resultado}")
 
     return resultado, pasos
 
@@ -153,7 +153,7 @@ def cifrado_afin(texto, a, b):
 
     abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
-    pasos.append("🔐 Cifrado Afín con alfabeto español (27 letras)")
+    pasos.append("Cifrado Afín con alfabeto español (27 letras)")
     pasos.append("Fórmula: E(x) = (a*x + b) mod 27\n")
 
     texto = texto.upper()
@@ -178,7 +178,7 @@ def cifrado_afin(texto, a, b):
         else:
             resultado += letra
 
-    pasos.append(f"✅ Resultado: {resultado}")
+    pasos.append(f"Resultado: {resultado}")
 
     return resultado, pasos
 
@@ -192,9 +192,9 @@ def sustitucion_simple(texto, clave):
     
     # Validación crucial para evitar que el programa se cierre
     if len(clave) != 27:
-        return None, [f"❌ Error: La clave debe tener 27 letras (tienes {len(clave)})."]
+        return None, [f"Error: La clave debe tener 27 letras (tienes {len(clave)})."]
 
-    pasos.append("🔐 **Sustitución Monoalfabética (Módulo 27)**")
+    pasos.append(" **Sustitución Monoalfabética (Módulo 27)**")
     pasos.append(f"Abecedario: `{abecedario}`")
     pasos.append(f"Clave:      `{clave}`\n")
 
